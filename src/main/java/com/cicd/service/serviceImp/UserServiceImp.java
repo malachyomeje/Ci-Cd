@@ -1,5 +1,6 @@
 package com.cicd.service.serviceImp;
 
+import com.cicd.dtos.request.UpdateDto;
 import com.cicd.dtos.request.UserDto;
 import com.cicd.dtos.response.UserResponse;
 import com.cicd.model.Users;
@@ -49,6 +50,26 @@ public class UserServiceImp implements UserService {
     @Override
     public List<Users>findAllUsers(){
         return userRepository.findAll();
+    }
+
+
+    @Override
+    public  UserResponse updateUser (UpdateDto updateDto){
+        Optional<Users> users = userRepository.findById(updateDto.getId());
+        if ( users.isEmpty()){
+            return  new UserResponse("USER NOT FOUND", updateDto.getEmail());
+        }
+
+        Users users1 = users.get();
+
+         users1.setName(updateDto.getName());
+        users1.setEmail(updateDto.getEmail());
+        users1.setAge(updateDto.getAge());
+        userRepository.save(users1);
+        return  new UserResponse("UPDATE SUCCESSFULLY", users1);
+
+
+
     }
 
 }

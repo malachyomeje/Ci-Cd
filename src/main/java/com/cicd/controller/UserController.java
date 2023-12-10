@@ -1,6 +1,7 @@
 package com.cicd.controller;
 
 
+import com.cicd.dtos.request.UpdateDto;
 import com.cicd.dtos.request.UserDto;
 import com.cicd.dtos.response.UserResponse;
 import com.cicd.model.Users;
@@ -30,5 +31,10 @@ public class UserController {
     @GetMapping("findAllUser")
     public List<Users> findAllUsers(){
         return userService.findAllUsers();
+    }
+
+    @PutMapping("updateUser")
+    public  UserResponse updateUser (@RequestBody UpdateDto updateDto){
+        return userService.updateUser(updateDto);
     }
 }
