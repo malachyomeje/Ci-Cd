@@ -15,4 +15,6 @@ public interface UserService {
     List<Users> findAllUsers();
 
     UserResponse updateUser (UpdateDto updateDto);
+
+    UserResponse deleteUser(String email);
 }

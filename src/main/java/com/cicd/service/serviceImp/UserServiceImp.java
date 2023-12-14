@@ -72,4 +72,17 @@ public class UserServiceImp implements UserService {
 
     }
 
+    @Override
+    public UserResponse deleteUser( String email){
+
+        Optional<Users> users = userRepository.findByEmail(email);
+        if ( users.isEmpty()){
+            return  new UserResponse("USER NOT FOUND", email);
+        }
+        Users users1 = users.get();
+
+        userRepository.delete(users1);
+        return  new UserResponse("USER DELETED SUCCESSFULLY", email);
+    }
+
 }
