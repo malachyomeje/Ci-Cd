@@ -37,4 +37,10 @@ public class UserController {
     public  UserResponse updateUser (@RequestBody UpdateDto updateDto){
         return userService.updateUser(updateDto);
     }
+
+    @DeleteMapping("deleteUser")
+    public UserResponse deleteUser( String email){
+        return userService.deleteUser(email);
+    }
+
 }
